@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Officer Registration & Login</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .form-container {
+            background-color: white;
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.5s ease;
+        }
+
+        /* Form title */
+        .form-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Input Groups */
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Switch links */
+        .switch-btn {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .switch-btn a {
+            color: #4CAF50;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .switch-btn a:hover {
+            text-decoration: underline;
+        }
+
+        /* Show Officer Forms */
+        .officer-forms {
+            display: none;
+        }
+
+        .show-officer .officer-forms {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container" id="formContainer">
+    
+        <div class="officer-forms">
+            <div class="form-title" id="officerFormTitle">Officer Registration</div>
+            <form class="officer-register-form" id="officerRegisterForm">
+                <div class="input-group">
+                    <label for="officerName">Officer Name</label>
+                    <input type="text" id="officerName" placeholder="Enter your name" required>
+                </div>
+                <div class="input-group">
+                    <label for="officerId">Officer ID</label>
+                    <input type="text" id="officerId" placeholder="Enter your officer ID" required>
+                </div>
+                <div class="input-group">
+                    <label for="officerStation">Police Station</label>
+                    <input type="text" id="officerStation" placeholder="Enter police station name" required>
+                </div>
+                <div class="input-group">
+                    <label for="officerPassword">Password</label>
+                    <input type="password" id="officerPassword" placeholder="Enter your password" required>
+                </div>
+                <div class="input-group">
+                    <label for="officerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="officerConfirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <div class="switch-btn">
+                    <a href="javascript:void(0);" onclick="switchToLogin('officer')">Already have an account? Login here</a>
+                </div>
+            </form>
+
+            <form class="officer-login-form" id="officerLoginForm" style="display:none;">
+                <div class="form-title" id="officerFormTitle">Officer Login</div>
+                <div class="input-group">
+                    <label for="loginOfficerId">Officer ID</label>
+                    <input type="text" id="loginOfficerId" placeholder="Enter your officer ID" required>
+                </div>
+                <div class="input-group">
+                    <label for="loginOfficerPassword">Password</label>
+                    <input type="password" id="loginOfficerPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="switch-btn">
+                    <a href="javascript:void(0);" onclick="switchToRegister('officer')">Don't have an account? Register here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to switch between Officer Registration/Login forms
+    function switchToRegister(role) {
+        if (role === 'officer') {
+            document.getElementById('officerRegisterForm').style.display = 'block';
+            document.getElementById('officerLoginForm').style.display = 'none';
+            document.getElementById('officerFormTitle').textContent = 'Officer Registration';
+        }
+    }
+
+    // Function to switch between Officer Login/Register forms
+    function switchToLogin(role) {
+        if (role === 'officer') {
+            document.getElementById('officerRegisterForm').style.display = 'none';
+            document.getElementById('officerLoginForm').style.display = 'block';
+            document.getElementById('officerFormTitle').textContent = 'Officer Login';
+        }
+    }
+
+    // Officer Login functionality
+    document.getElementById('officerLoginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Get Officer ID and Password (for demo purposes)
+        const officerId = document.getElementById('loginOfficerId').value;
+        const officerPassword = document.getElementById('loginOfficerPassword').value;
+
+        // You would typically authenticate the officer's credentials here (e.g., Firebase or your backend)
+
+        // For demo purposes, we are assuming the login is always successful.
+        if (officerId && officerPassword) {
+            window.location.href = 'index.html';  // Redirect to the index page after successful login
+        } else {
+            alert('Invalid credentials!');  // Handle invalid login attempt
+        }
+    });
+
+    // Initial state to show Officer Registration form by default
+    document.querySelector('.officer-forms').style.display = 'block';
+</script>
+
+</body>
+</html>

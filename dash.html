@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        .navbar .nav-right {
+            display: flex;
+            gap: 15px;
+        }
+
+        .dashboard-container {
+            padding: 20px;
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-content button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">
+        <h2 style="color: white;">Dashboard</h2>
+    </div>
+    <div class="nav-right">
+        <a href="#" id="filterBtn">Filter</a>
+        <a href="#" id="registerBtn">Register</a>
+    </div>
+</div>
+
+<!-- Dashboard Content -->
+<div class="dashboard-container">
+    <p>Welcome to the FIR Management System Dashboard.</p>
+</div>
+
+<!-- Modal for selecting User or Officer -->
+<div class="modal" id="roleModal">
+    <div class="modal-content">
+        <h3>Select Your Role</h3>
+        <button id="userBtn">I am a User</button>
+        <button id="officerBtn">I am an Officer</button>
+    </div>
+</div>
+
+<script>
+    // Toggle filter section visibility (existing code)
+    document.getElementById('filterBtn').addEventListener('click', function() {
+        const filterSection = document.getElementById('filterSection');
+        if (filterSection) {
+            filterSection.style.display = filterSection.style.display === 'none' ? 'block' : 'none';
+        }
+    });
+
+    // Open the role selection modal when clicking the Register button
+    document.getElementById('registerBtn').addEventListener('click', function() {
+        document.getElementById('roleModal').style.display = 'flex';
+    });
+
+    // Handle User button click
+    document.getElementById('userBtn').addEventListener('click', function() {
+        window.location.href = 'user.html'; // Redirect to User registration page
+    });
+
+    // Handle Officer button click
+    document.getElementById('officerBtn').addEventListener('click', function() {
+        window.location.href = 'officer.html'; // Redirect to Officer registration page
+    });
+
+    // Close the modal when clicking outside the modal content
+    window.onclick = function(event) {
+        if (event.target === document.getElementById('roleModal')) {
+            document.getElementById('roleModal').style.display = 'none';
+        }
+    };
+</script>
+
+</body>
+</html>

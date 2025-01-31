@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIR Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+<script>  "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js"</script>
+<script>  "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js"</script>
+</head>
+<body class="bg-gradient-to-r from-blue-50 to-indigo-100 py-10">
+  <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-3xl p-10">
+    <h1 class="text-3xl font-extrabold text-center text-indigo-600 mb-8">First Information Report (FIR) Form</h1>
+    <form action="#" method="POST" enctype="multipart/form-data" class="space-y-8">
+      <!-- FIR Number -->
+      <div>
+        <label for="firNumber" class="block text-lg font-medium text-gray-700">FIR Number</label>
+        <input type="text" id="firNumber" name="firNumber" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <!-- Police Station Name -->
+      <div>
+        <label for="policeStationName" class="block text-lg font-medium text-gray-700">Police Station Name</label>
+        <input type="text" id="policeStationName" name="policeStationName" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <!-- Date and Time of FIR -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="dateOfFIR" class="block text-lg font-medium text-gray-700">Date of FIR</label>
+          <input type="date" id="dateOfFIR" name="dateOfFIR" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div>
+          <label for="timeOfFIR" class="block text-lg font-medium text-gray-700">Time of FIR</label>
+          <input type="time" id="timeOfFIR" name="timeOfFIR" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+      </div>
+      <!-- Date and Time of Incident -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="dateOfIncident" class="block text-lg font-medium text-gray-700">Date of Incident</label>
+          <input type="date" id="dateOfIncident" name="dateOfIncident" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div>
+          <label for="timeOfIncident" class="block text-lg font-medium text-gray-700">Time of Incident</label>
+          <input type="time" id="timeOfIncident" name="timeOfIncident" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+      </div>
+      <!-- Place of Occurrence -->
+      <div>
+        <label for="placeOfOccurrence" class="block text-lg font-medium text-gray-700">Place of Occurrence</label>
+        <input type="text" id="placeOfOccurrence" name="placeOfOccurrence" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <!-- Complainant Details -->
+      <div>
+        <label for="complainantName" class="block text-lg font-medium text-gray-700">Complainant Name</label>
+        <input type="text" id="complainantName" name="complainantName" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <div>
+        <label for="complainantAddress" class="block text-lg font-medium text-gray-700">Complainant Address</label>
+        <textarea id="complainantAddress" name="complainantAddress" rows="3" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+      </div>
+      <div>
+        <label for="complainantContact" class="block text-lg font-medium text-gray-700">Complainant Contact</label>
+        <input type="tel" id="complainantContact" name="complainantContact" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <div>
+        <label for="relationshipWithVictim" class="block text-lg font-medium text-gray-700">Relationship with Victim</label>
+        <input type="text" id="relationshipWithVictim" name="relationshipWithVictim" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <!-- Crime Description -->
+      <div>
+        <label for="crimeDescription" class="block text-lg font-medium text-gray-700">Crime Description</label>
+        <textarea id="crimeDescription" name="crimeDescription" rows="5" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+      </div>
+      <!-- Accused Details -->
+      <div>
+        <label for="accusedDetails" class="block text-lg font-medium text-gray-700">Accused Details</label>
+        <textarea id="accusedDetails" name="accusedDetails" rows="3" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+      </div>
+      <!-- Criminal Photo -->
+      <div>
+        <label for="criminalPhoto" class="block text-lg font-medium text-gray-700">Criminal Photo</label>
+        <input type="file" id="criminalPhoto" name="criminalPhoto" accept="image/*" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm">
+      </div>
+      <!-- Evidence Details -->
+      <div>
+        <label for="evidenceDetails" class="block text-lg font-medium text-gray-700">Evidence Details</label>
+        <textarea id="evidenceDetails" name="evidenceDetails" rows="3" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+      </div>
+      <div>
+        <label for="evidenceDocuments" class="block text-lg font-medium text-gray-700">Evidence Documents</label>
+        <input type="file" id="evidenceDocuments" name="evidenceDocuments" multiple class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm">
+      </div>
+      <!-- Witness Details -->
+      <div>
+        <label for="witnessDetails" class="block text-lg font-medium text-gray-700">Witness Details</label>
+        <textarea id="witnessDetails" name="witnessDetails" rows="3" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+      </div>
+      <div>
+        <label for="witnessDocuments" class="block text-lg font-medium text-gray-700">Witness Documents</label>
+        <input type="file" id="witnessDocuments" name="witnessDocuments" multiple class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm">
+      </div>
+      <!-- IPC Section -->
+      <div>
+        <label for="ipcSection" class="block text-lg font-medium text-gray-700">IPC Section</label>
+        <input type="text" id="ipcSection" name="ipcSection" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <!-- Police Officer Details -->
+      <div>
+        <label for="policeOfficerName" class="block text-lg font-medium text-gray-700">Police Officer Name</label>
+        <input type="text" id="policeOfficerName" name="policeOfficerName" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <div>
+        <label for="officerDesignation" class="block text-lg font-medium text-gray-700">Officer Designation</label>
+        <input type="text" id="officerDesignation" name="officerDesignation" class="w-full mt-2 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <!-- Officer Signature -->
+      <div>
+        <label for="officerSignature" class="block text-lg font-medium text-gray-700">Officer Signature</label>
+        <canvas id="officerSignatureCanvas" class="w-64 h-32 mt-2 border border-gray-300 rounded-lg" width="256" height="128"></canvas>
+        <button type="button" id="clearOfficerSignature" class="mt-2 bg-red-500 text-white px-4 py-2 rounded">Clear</button>
+      </div>
+      <!-- Complainant Signature -->
+      <div>
+        <label for="complainantSignature" class="block text-lg font-medium text-gray-700">Complainant Signature</label>
+        <canvas id="complainantSignatureCanvas" class="w-64 h-32 mt-2 border border-gray-300 rounded-lg" width="256" height="128"></canvas>
+        <button type="button" id="clearComplainantSignature" class="mt-2 bg-red-500 text-white px-4 py-2 rounded">Clear</button>
+      </div>
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit" class="bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold px-8 py-3 rounded-lg shadow-lg transform hover:scale-105 transition-transform">Submit FIR</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function initializeSignatureCanvas(canvasId, clearButtonId) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext("2d");
+      let isDrawing = false;
+
+      // Get the canvas's position relative to the page
+      const canvasRect = canvas.getBoundingClientRect();
+
+      canvas.addEventListener("mousedown", () => (isDrawing = true));
+      canvas.addEventListener("mouseup", () => (isDrawing = false));
+      canvas.addEventListener("mousemove", draw);
+
+      function draw(event) {
+        if (!isDrawing) return;
+        
+        // Calculate the mouse position relative to the canvas
+        const offsetX = event.clientX - canvasRect.left;
+        const offsetY = event.clientY - canvasRect.top;
+
+        ctx.lineWidth = 2;
+        ctx.lineCap = "round";
+        ctx.strokeStyle = "#000";
+
+        ctx.lineTo(offsetX, offsetY);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(offsetX, offsetY);
+      }
+
+      document.getElementById(clearButtonId).addEventListener("click", () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      });
+    }
+
+    initializeSignatureCanvas("officerSignatureCanvas", "clearOfficerSignature");
+    initializeSignatureCanvas("complainantSignatureCanvas", "clearComplainantSignature");
+  
+  </script>
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBQ0yYVuA-RG5_nBMQpHx-bXsThwm0N_nY",
+      authDomain: "fir-266fd.firebaseapp.com",
+      projectId: "fir-266fd",
+      storageBucket: "fir-266fd.firebasestorage.app",
+      messagingSenderId: "154221367510",
+      appId: "1:154221367510:web:3a83b0f7bae51533a47977",
+      measurementId: "G-79JRPCPGSG"
+    };
+  
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  
+    // Function to submit FIR data
+    function submitFIRForm(event) {
+      event.preventDefault(); // Prevent the form from submitting normally
+  
+      // Get the form data
+      const firNumber = document.getElementById('firNumber').value;
+      const policeStationName = document.getElementById('policeStationName').value;
+      const dateOfFIR = document.getElementById('dateOfFIR').value;
+      const timeOfFIR = document.getElementById('timeOfFIR').value;
+      const dateOfIncident = document.getElementById('dateOfIncident').value;
+      const timeOfIncident = document.getElementById('timeOfIncident').value;
+      const placeOfOccurrence = document.getElementById('placeOfOccurrence').value;
+      const complainantName = document.getElementById('complainantName').value;
+      const complainantAddress = document.getElementById('complainantAddress').value;
+      const complainantContact = document.getElementById('complainantContact').value;
+      const relationshipWithVictim = document.getElementById('relationshipWithVictim').value;
+      const crimeDescription = document.getElementById('crimeDescription').value;
+      const accusedDetails = document.getElementById('accusedDetails').value;
+      const evidenceDetails = document.getElementById('evidenceDetails').value;
+      const witnessDetails = document.getElementById('witnessDetails').value;
+      const ipcSection = document.getElementById('ipcSection').value;
+      const policeOfficerName = document.getElementById('policeOfficerName').value;
+      const officerDesignation = document.getElementById('officerDesignation').value;
+  
+      // Create an object with the form data
+      const firData = {
+        firNumber,
+        policeStationName,
+        dateOfFIR,
+        timeOfFIR,
+        dateOfIncident,
+        timeOfIncident,
+        placeOfOccurrence,
+        complainantName,
+        complainantAddress,
+        complainantContact,
+        relationshipWithVictim,
+        crimeDescription,
+        accusedDetails,
+        evidenceDetails,
+        witnessDetails,
+        ipcSection,
+        policeOfficerName,
+        officerDesignation,
+      };
+  
+      // Save the FIR data to Firestore
+      db.collection('firReports').add(firData)
+        .then(() => {
+          alert("FIR Submitted Successfully!");
+        })
+        .catch(error => {
+          console.error("Error submitting FIR: ", error);
+          alert("Error submitting FIR.");
+        });
+    }
+  
+    // Attach event listener to the form submit
+    document.querySelector('form').addEventListener('submit', submitFIRForm);
+  </script>
+  
+</body>
+</html>

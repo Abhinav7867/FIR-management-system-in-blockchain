@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration & Login</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .form-container {
+            background-color: white;
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.5s ease;
+        }
+
+        /* Form title */
+        .form-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Input Groups */
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Switch links */
+        .switch-btn {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .switch-btn a {
+            color: #4CAF50;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .switch-btn a:hover {
+            text-decoration: underline;
+        }
+
+        /* Show User Forms */
+        .user-forms {
+            display: none;
+        }
+
+        .show-user .user-forms {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container" id="formContainer">
+        <!-- User Forms -->
+        <div class="user-forms">
+            <div class="form-title" id="userFormTitle">User Registration</div>
+            <form class="user-register-form" id="userRegisterForm">
+                <div class="input-group">
+                    <label for="userEmail">Email</label>
+                    <input type="email" id="userEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="userPassword">Password</label>
+                    <input type="password" id="userPassword" placeholder="Enter your password" required>
+                </div>
+                <div class="input-group">
+                    <label for="userConfirmPassword">Confirm Password</label>
+                    <input type="password" id="userConfirmPassword" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <div class="switch-btn">
+                    <a href="javascript:void(0);" onclick="switchToLogin('user')">Already have an account? Login here</a>
+                </div>
+            </form>
+
+            <form class="user-login-form" id="userLoginForm" style="display:none;">
+                <div class="form-title"></div>
+                <div class="input-group">
+                    <label for="loginUserEmail">Email</label>
+                    <input type="email" id="loginUserEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="loginUserPassword">Password</label>
+                    <input type="password" id="loginUserPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn" onclick="loginUser(event)">Login</button>
+                <div class="switch-btn">
+                    <a href="javascript:void(0);" onclick="switchToRegister('user')">Don't have an account? Register here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to switch between User Registration/Login forms
+    function switchToRegister(role) {
+        if (role === 'user') {
+            document.getElementById('userRegisterForm').style.display = 'block';
+            document.getElementById('userLoginForm').style.display = 'none';
+            document.getElementById('userFormTitle').textContent = 'User Registration';
+        }
+    }
+
+    // Function to switch between User Login/Register forms
+    function switchToLogin(role) {
+        if (role === 'user') {
+            document.getElementById('userRegisterForm').style.display = 'none';
+            document.getElementById('userLoginForm').style.display = 'block';
+            document.getElementById('userFormTitle').textContent = 'User Login';
+        }
+    }
+
+    // Function to handle user login
+    function loginUser(event) {
+        event.preventDefault(); // Prevent form from submitting
+
+        var email = document.getElementById("loginUserEmail").value;
+        var password = document.getElementById("loginUserPassword").value;
+
+        if (email === "" || password === "") {
+            alert("Please enter both email and password.");
+            return;
+        }
+
+        // Simulating authentication (Replace with actual backend validation)
+        var storedEmail = "user@example.com"; // Example email
+        var storedPassword = "password123"; // Example password
+
+        if (email === storedEmail && password === storedPassword) {
+            alert("Login successful!");
+            window.location.href = "dash.html"; // Redirect to dashboard
+        } else {
+            alert("Invalid email or password.");
+        }
+    }
+
+    // Initial state to show User Registration form by default
+    document.querySelector('.user-forms').style.display = 'block';
+</script>
+
+</body>
+</html>
